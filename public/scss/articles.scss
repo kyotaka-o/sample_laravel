@@ -1,0 +1,59 @@
+@font-face {
+  font-family: 'Calluna';
+  src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/CallunaSansRegular.otf') format('opentype');
+}
+* { 
+  box-sizing: border-box;
+}
+body {
+  font-family: Calluna, Arial, sans-serif;
+  background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), url("/images/bicycle-clouds-colors-797673.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed !important;
+  background-size: 100% !important;
+  background-position: center top !important;
+  padding: 1rem;
+  padding-top: 45%;
+  color: #fff;
+}
+.art-title{
+  color: #fff;
+  opacity: 0.8;
+}
+.art-card{
+  margin: 20px auto;
+  height: 300px;
+  width: 500px;
+  background: no-repeat 50% 50%;
+  background-size: cover;
+}
+h1 {
+  color: #fff;
+  opacity: 0.8;
+  font-size: 4rem;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  line-height: 1;
+  position: absolute;
+  top: 200px;
+  left: 350px;
+  font-weight: 100;
+}
+p {
+  font-size: 1.3rem;
+  text-align: left;
+  line-height: 1.6;
+  margin-left: 8rem;
+  margin-right: 8rem;
+  color: #000;
+}
+h2 {
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+span {
+  display: block;
+  margin: 0;
+  text-align: center;
+  font-size: 3rem;
+}
