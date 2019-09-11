@@ -12,7 +12,7 @@
 
   {{-- application.blade.phpの@yield('content')に以下のレイアウトを代入 --}}
   @section('content')
-  <h1><small>Cycling's photos</small> 
+<h1 style="display:none;"><small>Cycling's photos</small> 
     Enjoy Cycling? 
     <small>
       <a href="/auth/login">
@@ -31,7 +31,7 @@
     <div class="slideshow-image" style="background-image: url('/images/athlete-bicycle-bicyclist-15765-min.jpg')"></div>
     <div class="slideshow-image" style="background-image: url('/images/bicycle-blue-bricks-1149601-min.jpg')"></div>
   </div>
-
+  <script src="/js/menu.js"></script>
   @endsection
 @else
 
@@ -40,6 +40,7 @@
   @section('org_css')
   <link href="/css/articles.css" rel="stylesheet" type="text/css">
   <link href="/css/button.css" rel="stylesheet" type="text/css">
+  <link href="/css/modal.css" rel="stylesheet" type="text/css">
   @endsection
   {{-- application.blade.phpの@yield('content')に以下のレイアウトを代入 --}}
   @section('content')
@@ -49,31 +50,23 @@
       <span id="directionality">▼</span>
     </div>
 
-    <div class="menu">
+    <div class="menu fader">
       <div class="btn trigger">
         <span class="line"></span>
       </div>
       <div class="icons">
         <div class="rotater">
-          <!-- <div class="btn btn-icon"> -->
-            <a href="/articles/create">
-              <button type="button" class="btn btn-icon btn-primary rounded-circle p-0" style="width:4rem;height:4rem;">New</button>  
-            </a>
-          <!-- </div> -->
+              <button type="button" class="btn btn-icon btn-primary rounded-circle p-0" style="width:4rem;height:4rem;" id="new-art">New</button>  
         </div>
         <div class="rotater">
-          <!-- <div class="btn btn-icon"> -->
             <a href="/">
               <button type="button" class="btn btn-icon btn-info rounded-circle p-0" style="width:4rem;height:4rem;">Mypage</button>  
             </a>
-          <!-- </div> -->
         </div>
         <div class="rotater">
-          <!-- <div class="btn btn-icon"> -->
             <a href="/">
               <button type="button" class="btn btn-icon btn-success rounded-circle p-0" style="width:4rem;height:4rem;">Users</button>  
             </a>
-          <!-- </div> -->
         </div>
         <div class="rotater">
           <!-- <div class="btn btn-icon"> -->
@@ -104,25 +97,58 @@
 
 
 
-    <section>
+    <section class="fader">
       @foreach ($articles as $article)
 
-        <div class="art-card" style="background-image: url('/{{ str_replace('public/', 'storage/', $article->image_url)}}')"></div>
+        <div class="art-card" style="background-image: url('/{{ str_replace('public/', 'storage/', $article->image_url)}}')" data-id='{{ $article->id }}'>
+          <div class="art-card__title">
+            <h4>{{$article->title}}</h4>
+          </div>
+          <div class="art-card__body">
+             <p>{{$article->body}}</p>
+          </div>
+          @if (Auth::user()->id == $article->user_id)
+            <form action="/articles/{{$article->id}}" method="post" class="del_form">
+              {{ csrf_field() }}
+              <input type="hidden" name="_method" value="delete">
+              <input type="submit" name="" value="×" class="btn btn-danger pos-right-top delete-art">
+            </form>
+          @endif
+        </div>
 
-          <!-- <h4>{{$article->title}}</h4>
-          <p>{{$article->body}}</p>
-          <a href="/articles/{{$article->id}}">詳細を表示</a>
-          <a href="/articles/{{$article->id}}/edit">編集する</a>
-          <form action="/articles/{{$article->id}}" method="post">
-            {{ csrf_field() }}
-            <input type="hidden" name="_method" value="delete">
-            <input type="submit" name="" value="削除する">
-          </form>
-          {{-- <a href="/articles/{{$article->id}}">削除する</a> --}} -->
       @endforeach
     </section>
+    <div id="modal-content" style="display:none;">
+      <form enctype="multipart/form-data" method="post" action="/articles"  id="form-org">
+      {{-- 以下を入れないとエラーになる --}}
+      {{ csrf_field() }}
+      <div class="art-form">
+        <label for="image_input">
+          Add Image
+          <!-- <button type="button" class="btn btn-secondary" style="width:4rem;height:4rem;">？</button>   -->
+          <input type="file" name="image_url" id="image_input" style="display:none;"/>
+        </label>
+        <div id="images">
+        </div>
+      </div>
+      <div class="art-form">
+        <input type="text" name="title" placeholder="title">
+      </div>
+      <div class="art-form">
+        <textarea name="body" rows="8" cols="80" placeholder="content"></textarea>
+      </div>
+      <div class="art-form">
+        <input type="submit" class="btn btn-success" value="send">
+        <button type="button" class="btn btn-danger" id="modal-close">cancel</button>        
+      </div>
+    </form>
+  </div>
+  
     <script src="/js/scroll.js"></script>
+    <script src="/js/modal.js"></script>
     <script src="/js/button.js"></script>
+    <script src="/js/art_del.js"></script>
+    <!-- <script src="/js/art_create.js"></script> -->
 
   @endsection
 @endif

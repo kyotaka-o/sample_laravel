@@ -8,7 +8,7 @@
 <link href="/css/home.css" rel="stylesheet" type="text/css">
 @endsection
 @section('content')
-<h1>Log in?
+<h1 style="display:none;">Log in?
 @isset($message)
   <p style="color:red">{{$message}}</p>
 @endisset
@@ -25,4 +25,6 @@
 <div class="slideshow">
   <div class="slideshow-image-none" style="background-image: url('/images/bicycle-blue-bricks-1149601-min.jpg')"></div>
 </div>
+
+<script src="/js/menu.js"></script>
 @endsection

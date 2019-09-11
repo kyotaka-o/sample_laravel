@@ -9,7 +9,7 @@
 <link href="/css/home.css" rel="stylesheet" type="text/css">
 @endsection
 @section('content')
-<h1>Sign up?
+<h1 style="display:none;">Sign up?
 <form name="registform" action="/auth/register" method="post">
   {{ csrf_field()}}
   <small>name:<br /><input type="text" name="name" size="30" ><span>{{ $errors->first("name") }}</span></small><br />
@@ -25,4 +25,5 @@
 <div class="slideshow">
   <div class="slideshow-image-none" style="background-image: url('/images/adventure-bicycle-cycling-161172-min.jpg')"></div>
 </div>
+<script src="/js/menu.js"></script>
 @endsection
