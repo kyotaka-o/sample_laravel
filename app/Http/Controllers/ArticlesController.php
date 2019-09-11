@@ -23,7 +23,7 @@ class ArticlesController extends Controller
     {
 
       // $articles変数にArticleモデルから全てのレコードを取得して、代入
-      $articles = Article::all();
+      $articles = Article::orderBy('created_at', 'desc')->get();
     //   return $articles;
       return view('articles.index', ['articles' => $articles]);
     }
@@ -51,10 +51,17 @@ class ArticlesController extends Controller
       // $requestにformからのデータが格納されているので、以下のようにそれぞれ代入する
       $article->title = $request->title;
       $article->body = $request->body;
+      $article->user_id = \Auth::user()->id;
       $article->image_url = $request->image_url->storeAs('public/article_images', now().'_'.\Auth::user()->id . '.jpg');
       $article->save();
       // 保存後 一覧ページへリダイレクト
-      return redirect('/articles');
+      return response()->json(['title' => $article->title, 
+                               'body' => $article->body,
+                               'user_id' => $article->user_id,
+                               'image_url' => $article->image_url,
+                               "id" => $article->id
+                               ]);
+
     }
 
     /**
@@ -116,6 +123,8 @@ class ArticlesController extends Controller
       // 削除
       $article->delete();
       // 一覧にリダイレクト
-      return redirect('/articles');
+            // 保存後 一覧ページへリダイレクト
+      return response()->json(['id' => $id]);
+    //   return redirect('/articles');
     }
 }

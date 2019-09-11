@@ -16,6 +16,13 @@ body {
   padding-top: 45%;
   color: #fff;
 }
+.pos-right-top {
+  position: absolute;
+  right: 0;
+  top: 0;
+  opacity: 0;
+  transition-duration: 1s;
+}
 .art-title {
   color: #fff;
   opacity: 0.8;
@@ -26,6 +33,56 @@ body {
   width: 500px;
   background: no-repeat 50% 50%;
   background-size: cover;
+  position: relative;
+  color: #fff;
+  border-radius: 5px;
+}
+.art-card__title {
+  margin: 10px;
+  opacity: 0;
+  transition-duration: 0.5s;
+}
+.art-card__title h4 {
+  font-size: 40px;
+  color: #fff;
+}
+.art-card__body {
+  position: absolute;
+  opacity: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 20px;
+  transition-duration: 0.5s;
+}
+.art-card__body p {
+  color: #fff;
+}
+.art-card:hover {
+  opacity: 0.9;
+}
+.art-card:hover .art-card__title {
+  opacity: 1;
+}
+.art-card:hover .art-card__body {
+  opacity: 1;
+}
+.art-card:hover .pos-right-top {
+  opacity: 1;
+}
+.fader {
+  opacity: 0;
+  transition-duration: 0.5s;
+}
+.art-form {
+  margin: 10px;
+}
+label {
+  display: inline-block;
+  background-color: #17a2b8;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 h1 {
   color: #fff;
