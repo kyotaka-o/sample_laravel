@@ -41,6 +41,7 @@
   <link href="/css/articles.css" rel="stylesheet" type="text/css">
   <link href="/css/button.css" rel="stylesheet" type="text/css">
   <link href="/css/modal.css" rel="stylesheet" type="text/css">
+  <link href="/css/flip.css" rel="stylesheet" type="text/css">
   @endsection
   {{-- application.blade.phpの@yield('content')に以下のレイアウトを代入 --}}
   @section('content')
@@ -92,14 +93,8 @@
       </div>
     </div>
 
-
-
-
-
-
     <section class="fader">
       @foreach ($articles as $article)
-
         <div class="art-card" style="background-image: url('/{{ str_replace('public/', 'storage/', $article->image_url)}}')" data-id='{{ $article->id }}'>
           <div class="art-card__title">
             <h4>{{$article->title}}</h4>
@@ -126,16 +121,16 @@
         <label for="image_input">
           Add Image
           <!-- <button type="button" class="btn btn-secondary" style="width:4rem;height:4rem;">？</button>   -->
-          <input type="file" name="image_url" id="image_input" style="display:none;"/>
+          <input type="file" name="image_url" id="image_input" style="display:none;" class="art-form-img"/>
         </label>
         <div id="images">
         </div>
       </div>
       <div class="art-form">
-        <input type="text" name="title" placeholder="title">
+        <input type="text" name="title" placeholder="title" class="art-form-title">
       </div>
       <div class="art-form">
-        <textarea name="body" rows="8" cols="80" placeholder="content"></textarea>
+        <textarea name="body" rows="8" cols="80" placeholder="content" class="art-form-body"></textarea>
       </div>
       <div class="art-form">
         <input type="submit" class="btn btn-success" value="send">

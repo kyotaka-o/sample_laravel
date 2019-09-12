@@ -1,0 +1,70 @@
+.flip-boards {
+  position: relative;
+}
+
+.flip-boards .board {
+  float: left;
+  margin: 2em 8em;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.flip-boards .board div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border: 1px solid #ccc;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-boards .board .front {
+  color: #eee;
+  background: #cfe7fa;
+  /* Old browsers */
+  background: -webkit-gradient(linear, left top, left bottom, from(#cfe7fa), to(#6393c1));
+  background: linear-gradient(to bottom, #cfe7fa 0%, #6393c1 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cfe7fa', endColorstr='#6393c1',GradientType=0 );
+}
+
+.flip-boards .board .flipped {
+  color: #555;
+  background: #eeeeee;
+  /* Old browsers */
+  background: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#eeeeee));
+  background: linear-gradient(to bottom, #eeeeee 0%, #eeeeee 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#eeeeee',GradientType=0 );
+}
+
+.flip-boards .board h2 {
+  margin-top: 80px;
+  font-size: 1em;
+}
+
+.flip-boards .board.top:hover {
+  -webkit-transform: rotateX(180deg);
+  transform: rotateX(180deg);
+}
+
+.flip-boards .board.top .flipped {
+  -webkit-transform: rotateX(180deg);
+  transform: rotateX(180deg);
+}
+
+.flip-boards .board.left:hover {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+.flip-boards .board.left .flipped {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+/*# sourceMappingURL=flip.css.map */

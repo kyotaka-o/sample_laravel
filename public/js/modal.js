@@ -141,8 +141,15 @@ $(function() {
               <input type="hidden" name="_method" value="delete">
               <input type="submit" name="" value="×" class="btn btn-danger pos-right-top delete-art">
             </form>
-          </div>`
+          </div>`;
         $("section").prepend(html);
+        console.log($("#form-org")[0]);
+        $(".art-form-img").val("");
+        $(".art-form-body").val("");
+        $(".art-form-title").val("");
+        $("#image-prev").remove();
+        $('body,html').animate({
+          scrollTop: $("body").height()-$("section").height() + 300},300);
       })
       .fail(function(){
         alert('error');
